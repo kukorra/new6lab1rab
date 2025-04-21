@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 public class TriangleAnalyzer : Triangle
 {
@@ -6,14 +6,39 @@ public class TriangleAnalyzer : Triangle
 
     public TriangleAnalyzer(Triangle other) : base(other) { }
 
-    public int GetPerimeter() => SideA + SideB + SideC;
+    public int GetPerimeter()
+    {
+        return SideA + SideB + SideC;
+    }
 
-    public int GetLongestSide() => Math.Max(SideA, Math.Max(SideB, SideC));
+    public int GetLongestSide()
+    {
+        int longest = SideA;
+
+        if (SideB > longest)
+        {
+            longest = SideB;
+        }
+
+        if (SideC > longest)
+        {
+            longest = SideC;
+        }
+
+        return longest;
+    }
 
     public bool IsValidTriangle()
     {
-        return (SideA + SideB > SideC) &&
-               (SideA + SideC > SideB) &&
-               (SideB + SideC > SideA);
+        if (SideA + SideB > SideC &&
+            SideA + SideC > SideB &&
+            SideB + SideC > SideA)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
